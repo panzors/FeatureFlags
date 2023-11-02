@@ -10,35 +10,17 @@ namespace FeatureFlags.Tests
         {
             _featureService = new Mock<IFeatureService>();
 
-            // This is one approach to doing this if you've got an init or setup step.
-            // In development, always return true and explicitly mark false if you need.
-            // This is also shippable if you want to create empty TDD tests.
-            _featureService.Setup(x => x.Evaluate("flag-name", "customer")).Return(true);
             _sut = new Pattern(_featureService.Object, ...otherServices);
         }
 
         [Test]
         public void Method_Load_Result()
         {
-            _featureService.Setup(x => x.Evaluate("flag-name", "customer")).Return(true);
             var result = _sut.Method();
 
             // Arbitrary validation
             result.Data.Should().Be(10);
             _mock.FlaggOnRoute().WasCalled(1);
-        }
-
-        // The FF-off state should have the additional "method name" associated with it.
-        // This becomes apparent when you "Forget to remove tests" 
-        [Test]
-        public void Old_Method_Load_Result()
-        {
-            _featureService.Setup(x => x.Evaluate("flag-name", "customer")).Return(false);
-            var result = _sut.Method();
-
-            // Arbitrary validation
-            result.Data.Should().Be(22);
-            _mock.FlaggedOffRoute().WasCalled(1);
         }
     }
 
@@ -47,7 +29,6 @@ namespace FeatureFlags.Tests
     public class PatternBonusTests
     {
         [Test]
-        [FeatureFlag("flag-name", true)]
         public void Method_Load_Result()
         {
             var result = _sut.Method();
@@ -57,15 +38,5 @@ namespace FeatureFlags.Tests
             _mock.FlaggOnRoute().WasCalled(1);
         }
 
-        [Test]
-        [FeatureFlag("flag-name", false)]
-        public void Old_Method_Load_Result()
-        {
-            var result = _sut.Method();
-
-            // Arbitrary validation
-            result.Data.Should().Be(22);
-            _mock.FlaggedOffRoute().WasCalled(1);
-        }
     }
 }
