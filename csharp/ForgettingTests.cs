@@ -4,7 +4,6 @@ public class ForgettingTests
 {
     /// When the feature flag is removed, one of these your build will now fail.
     [Test]
-    [FeatureFlag("flag-name", true)]
     public void Method_NormalOperation_ReturnsNewValues()
     {
         var result = _sut.Method();
