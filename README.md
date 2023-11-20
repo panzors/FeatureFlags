@@ -1,8 +1,16 @@
 # FeatureFlags
 This repository is meant to be used to distribute knowledge. Please feel free to browse and modify or even steal. Most of these ideas are simply just ideas. They are my personal best guess for what should be ideal so there's still room for improvement as I get more feedback.
 
+## Learning Modules
+
+1. What is a feature flag [What is a feature flag](./docs/Introduction.md) - Skip this if you're aware of the concept
+1. [General best practice](./docs/BestPractice.md) - Skip this if you're a cool cat
+
+
 ## What's in this?
 This repo probably will not compile as they are code snippets that I'm going to use to demonstrate. Please check the pull requests to get the second part of the story.
+
+## Learning
 
 ### Examples
 - C# + unit tests
@@ -29,11 +37,12 @@ What this will not cover is how to handle compounding feature flags. That might 
 - Avoid concurrency and caching. Only do it if you HAVE TO.
 
 ### C# (~/csharp)
-*Pattern.cs* for the best approach
-*NegativePatterns.cs* for not so good examples
 
-See the code comments for the basic concepts of do and don't.
 
-See the Tests equivalent of what you should do - *PatternTests.cs*, *NegativePatternsTests.cs*
+### React TS
+React has a bit more complexity around it because of the way I've seen components get very large very quickly. There's also the concept of state stores and dispatches. A mix of actions/events vs transform data displayed. It's also quite hard to consider what a backing typescript file has access to.
 
-###
+### Javascript
+Testing can easily get out of hand really quickly.
+
+If you adhere to having a clean setup process and stub out the right defaults on calls it should alleviate a lot of the stressers.
